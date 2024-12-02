@@ -178,3 +178,62 @@ Career Recommendation System
 Career Details and Application Workflow
 Scholarship and Mentorship Features
 Application Tracking
+
+
+
+
+
+PROJECT STRUCTURE
+
+intelligent-career-guidance/
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   ├── script.js
+├── backend/
+│   ├── app.js
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── careerRoutes.js
+│   │   ├── trackingRoutes.js
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── careerController.js
+│   │   ├── trackingController.js
+│   ├── models/
+│       ├── db.js
+│       ├── userModel.js
+│       ├── careerModel.js
+│       ├── trackingModel.js
+├── database/
+│   ├── schema.sql
+├── firebase/
+│   ├── firebaseConfig.json
+├── ai/
+│   ├── career_recommendation.py
+
+
+
+DATABASE SCHEMA 
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE careers (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  description TEXT,
+  requirements TEXT
+);
+
+CREATE TABLE tracking (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  career_id INT,
+  status VARCHAR(50),
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (career_id) REFERENCES careers(id)
+);
